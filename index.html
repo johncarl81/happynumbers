@@ -11,6 +11,8 @@
 
 <p>Demonstration of the Happy Number graphs.</p>
 
+<p>Inspired by Numberphile: <a href="http://www.youtube.com/watch?v=_DpzAvb3Vk4">Youtube Video</a></p>
+
 <script type="text/javascript" charset="utf-8">
 
     var nodes = [];
@@ -70,7 +72,7 @@
 
     // Per-type markers, as they don't inherit styles.
     svg.append("svg:defs").selectAll("marker")
-            .data(["suit", "licensing", "resolved"])
+            .data(["suit", "arrow"])
             .enter().append("svg:marker")
             .attr("id", String)
             .attr("viewBox", "0 -5 10 10")
