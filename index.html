@@ -15,6 +15,9 @@
 
 <script type="text/javascript" charset="utf-8">
 
+    var base = 10;
+    var max = 100;
+
     var nodes = [];
     var labelAnchors = [];
     var labelAnchorLinks = [];
@@ -24,7 +27,7 @@
 
     function addNode(i) {
         var node = {
-            label:i
+            label:(i).toString(base)
         };
         nodeMapping[i] = nodes.push(node) - 1;
         labelAnchors.push({
@@ -36,7 +39,7 @@
     }
 
 
-    happyNumberMap(10, 100, function (i, happy) {
+    happyNumberMap(base, max, function (i, happy) {
         if (nodeMapping[i] == undefined) {
             addNode(i);
         }
