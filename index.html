@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Force based label placement</title>
-    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.9.6"></script>
+    <title>Happy Numbers</title>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.29.1"></script>
     <script type="text/javascript" src="happy.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+
+<p>Demonstration of the Happy Number graphs.</p>
+
 <script type="text/javascript" charset="utf-8">
 
     var nodes = [];
@@ -83,10 +86,10 @@
             .data(force.links())
             .enter().append("svg:path")
             .attr("class", function (d) {
-                return "link " + d.type;
+                return "link arrow";
             })
             .attr("marker-end", function (d) {
-                return "url(#" + d.type + ")";
+                return "url(#arrow)";
             });
 
     var circle = svg.append("svg:g").selectAll("circle")
@@ -134,5 +137,19 @@
     }
 
 </script>
+
+<p>Happy numbers are defined as follows</p>
+<ol>
+    <li>Pick a number</li>
+    <li>Sum the squared digits that make up the number</li>
+    <li>Repeat until you loop or reach 1</li>
+    <li>If you reach 1 the originial number is defined as a happy number</li>
+</ol>
+
+Example:<br/>
+Pick: 13<br/>
+1<sup>2</sup> + 3<sup>2</sup> = 10<br/>
+1<sup>2</sup> + 0<sup>2</sup> = 1,<br/>
+Therefore, 13 is a happy number
 </body>
 </html>
