@@ -1,4 +1,9 @@
-function happyNumberVisualization(base, max, selector) {
+function setupVisualization(selector) {
+
+
+}
+
+function happyNumberVisualization(max, base, selector) {
 
     var nodes = [];
     var labelAnchors = [];
@@ -21,7 +26,7 @@ function happyNumberVisualization(base, max, selector) {
     }
 
 
-    happyNumberMap(base, max, function (i, happy) {
+    happyNumberMap(max, base, function (i, happy) {
         if (nodeMapping[i] == undefined) {
             addNode(i);
         }
@@ -50,6 +55,8 @@ function happyNumberVisualization(base, max, selector) {
         .charge(-100)
         .on("tick", tick)
         .start();
+
+    d3.select(selector + " *").remove();
 
     var svg = d3.select(selector).append("svg")
         .attr("width", w)
@@ -105,13 +112,12 @@ function happyNumberVisualization(base, max, selector) {
             return d.label;
         });
 
-    // Use elliptical arc path segments to doubly-encode directionality.
     function tick() {
         path.attr("d", function (d) {
             var dx = d.target.x - d.source.x,
                 dy = d.target.y - d.source.y,
-                dr = Math.sqrt(dx * dx + dy * dy);
-            return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+                dr = Math.sqrt(dx * dx + dy * dy * 2);
+            return "M" + d.source.x + "," + d.source.y + "," + d.target.x + "," + d.target.y;
         });
 
         circle.attr("transform", function (d) {

@@ -15,17 +15,21 @@
 </p>
 
 <div id="graph"></div>
-<script type="text/javascript" src="visualization.js"></script>
-<script type="text/javascript">
-    happyNumberVisualization(10, 100, "#graph");
-</script>
 
-<p>Happy numbers are defined as follows</p>
+Maximum: <input id="max" value="100" min="1" type="number"/>
+Base: <input id="base" value="10" min="2" max="36" type="number"/>
+<input type="Submit" value="Update" onclick="update()"/>
+
+<br/>
+
+Warning: Large maximum may take a significant amount of time to calculate.
+
+<p><a href="http://en.wikipedia.org/wiki/Happy_number">Happy numbers</a> are defined as follows</p>
 <ol>
     <li>Pick a number</li>
     <li>Sum the squared digits that make up the number</li>
     <li>Repeat until you loop or reach 1</li>
-    <li>If you reach 1 the originial number is defined as a happy number</li>
+    <li>If you reach 1 the original number is defined as a happy number</li>
 </ol>
 
 Example:<br/>
@@ -33,6 +37,21 @@ Pick: 13<br/>
 1<sup>2</sup> + 3<sup>2</sup> = 10<br/>
 1<sup>2</sup> + 0<sup>2</sup> = 1<br/>
 Therefore, 13 is a happy number
+
+<br/>
+<br/>
+<a href="http://d3js.org/">D3</a> used for graph visualization.
+
+<script type="text/javascript" src="visualization.js"></script>
+<script type="text/javascript">
+    function update() {
+        var base = parseInt(document.getElementById("base").value);
+        var max = parseInt(document.getElementById("max").value);
+        happyNumberVisualization(max, base, "#graph");
+    }
+
+    update();
+</script>
 
 <a href="https://github.com/johncarl81/happynumbers"><img style="position: absolute; top: 0; right: 0; border: 0;"
                                                           src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"

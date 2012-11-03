@@ -1,8 +1,12 @@
-function happyNumberMap(base, max, callback) {
+// Function to create all the happy numbers <= the given max and in the given base.
+// The given callback will be provided the number n and its happification(n).
+// Also, the callback will only be called once per number n.
+function happyNumberMap(max, base, callback) {
 
     var happyMap = [];
 
-    function happyNumber(base, number) {
+    //returns the happy number for the given input number
+    function happification(number) {
 
         var numberLength = Math.floor(Math.log(number) / Math.log(base)) + 1;
         var happyness = 0;
@@ -14,17 +18,21 @@ function happyNumberMap(base, max, callback) {
         return happyness;
     }
 
-    function happyNumberUpdate(happyMap, base, i, callback) {
+    // Iteratively updates the happyMap and callback with the happy number calculated from i.
+    // If i already exists in the happyMap, the function quits.
+    // This allows us to find happy numbers > i if they exist in the chain.
+    function happyNumberUpdate(i) {
 
-        if (!happyMap[i]) {
-            happyMap[i] = happyNumber(base, i);
+        while (!happyMap[i]) {
+            happyMap[i] = happification(i);
             callback(i, happyMap[i]);
 
-            happyNumberUpdate(happyMap, base, happyMap[i], callback);
+
+            i = happyMap[i];
         }
     }
 
     for (var i = 1; i <= max; i++) {
-        happyNumberUpdate(happyMap, base, i, callback);
+        happyNumberUpdate(i);
     }
 }
